@@ -9,6 +9,8 @@ My project is researching the GO Fiber framework and how to use it to build a fu
 - `go get github.com/jackc/pgx/v5`
 - `go get -u github.com/gofiber/template/html/v2`
 - `go get -u github.com/gofiber/fiber/v2`
+- `go get github.com/golang-jwt/jwt/v5`
+- `go get golang.org/x/crypto/bcrypt`
 
 ## Installation
 1. Clone the repository `git clone git@github.com:Marsudii/gofiber-monolith.git`

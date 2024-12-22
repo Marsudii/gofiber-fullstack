@@ -1,38 +1,20 @@
 package routes
 
 import (
-	"gofiber-fullstack/internal/handlers"
-
 	"github.com/gofiber/fiber/v2"
+	"gofiber-fullstack/internal/config"
 )
 
-func Routes(app *fiber.App) {
+func Routes(app *fiber.App, config *config.Config) {
 
 	// Views Routes
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.Render("home", fiber.Map{
-			"Title": "Home",
-		})
-	})
-
-	app.Get("/about", func(c *fiber.Ctx) error {
-		return c.Render("about", fiber.Map{
-			"Title": "Home",
-		})
-	})
-
-	app.Get("/blogs", func(c *fiber.Ctx) error {
-		return c.Render("blogs", fiber.Map{
-			"Title": "Home",
-		})
-	})
+	app.Get("/", config.AuthHandler.LoginView)
+	app.Get("/register", config.AuthHandler.RegisterView)
 
 	// API Routes
 	apiV1Group := app.Group("/api/v1")
-
-	// Home API Init
-	homeHandler := handlers.HomeClass{}
-	// Home API Route
-	apiV1Group.Get("/home", homeHandler.HomeHandler)
+	apiV1Group.Post("/login", config.AuthHandler.LoginApi)
+	apiV1Group.Post("/register", config.AuthHandler.RegisterApi)
+	// API MIDDLEWARE CHECK TOKEN
 
 }
